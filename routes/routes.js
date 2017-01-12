@@ -1,6 +1,10 @@
 var fs = require("fs")
 var path = require("path");
 
+var DURATION_LATENCY = 3000;
+
+var hasLatency = true;
+
 var appRouter = function(app) {
   app.get("/", function(req, res) {
     res.send('Mock API');
@@ -13,6 +17,13 @@ var appRouter = function(app) {
     fs.readFile(pathFile, function(error, data) {
       var stringData = data.toString();
       var finalData = stringData.replace('{{NID}}', nidRequested);
+
+      if (hasLatency) {
+        setTimeout(function() {
+          res.send(finalData);
+        }, DURATION_LATENCY);
+        return;
+      }
 
       res.send(finalData);
     });
