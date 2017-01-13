@@ -1,6 +1,12 @@
 # mock-api
 Simple NodeJS/ExpressJS API to return dynamic requested HTML.
 
+Run
+
+```
+npm install
+```
+
 To run the API
 ```
 node app.js
